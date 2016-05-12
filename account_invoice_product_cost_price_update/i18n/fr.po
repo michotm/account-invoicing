@@ -1,0 +1,133 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_product_cost_price_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-12 10:13+0000\n"
+"PO-Revision-Date: 2016-05-12 10:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: account_invoice_product_cost_price_update
+#: help:account.invoice.line,standard_price:0
+msgid "Cost price of the product template used for standard stock valuation in accounting and used as a base price on purchase orders. Expressed in the default unit of measure of the product."
+msgstr "Prix de revient du produit utilisé pour l'évaluation des stocks dans la comptabilité et utilisé comme prix de base sur les commandes d'achat. Exprimé dans l'unité de mesure du produit."
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "Old cost price"
+msgstr "Ancien prix d'achat"
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: account_invoice_product_cost_price_update
+#: model:ir.model,name:account_invoice_product_cost_price_update.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: account_invoice_product_cost_price_update
+#: model:ir.model,name:account_invoice_product_cost_price_update.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Lignes de facture"
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,invoice_line_ids:0
+msgid "Invoice lines"
+msgstr "Lignes de facture"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "Invoice lines"
+msgstr "Lignes de facture"
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,__last_update:0
+msgid "Last Modified on"
+msgstr "Modifié le"
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,write_uid:0
+msgid "Last Updated by"
+msgstr "Mis à jour par"
+
+#. module: account_invoice_product_cost_price_update
+#: field:supplierinvoice.update.product.costprice,write_date:0
+msgid "Last Updated on"
+msgstr "Mis à jour le"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "List of products to update"
+msgstr "Liste des produits à mettre à jour"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "New cost price"
+msgstr "Nouveau prix d'achat"
+
+#. module: account_invoice_product_cost_price_update
+#: field:account.invoice.line,standard_price:0
+msgid "Product cost price"
+msgstr "Prix d'achat du produit"
+
+#. module: account_invoice_product_cost_price_update
+#: model:ir.model,name:account_invoice_product_cost_price_update.model_supplierinvoice_update_product_costprice
+msgid "Update Product Cost Price from Supplier Invoice"
+msgstr "Mis à jour du prix d'achat du produit à partir de la facture fournisseur"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "Update cost price of products"
+msgstr "Mis à jour du prix d'achat des produits"
+
+#. module: account_invoice_product_cost_price_update
+#: code:addons/account_invoice_product_cost_price_update/account_invoice.py:32
+#, python-format
+msgid "Update product cost price with unit price of this supplier invoice."
+msgstr "Mis à jour du prix d'achat du produit avec le prix unitaire de la facture fournisseur."
+
+#. module: account_invoice_product_cost_price_update
+#: view:account.invoice:account_invoice_product_cost_price_update.invoice_supplier_form
+msgid "object"
+msgstr "objet"
+
+#. module: account_invoice_product_cost_price_update
+#: view:supplierinvoice.update.product.costprice:account_invoice_product_cost_price_update.view_supplierinvoice_update_product_costprice_form
+msgid "or"
+msgstr "ou"
+

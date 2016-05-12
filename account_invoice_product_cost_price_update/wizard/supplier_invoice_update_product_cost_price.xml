@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+    <record id="view_supplierinvoice_update_product_costprice_form" model="ir.ui.view">
+        <field name="model">supplierinvoice.update.product.costprice</field>
+        <field name="arch" type="xml">
+            <form string="Update cost price of products">
+                <separator string="List of products to update"/>
+                <field name="invoice_line_ids">
+                    <tree string="Invoice lines" editable="0">
+                        <field name="name" readonly="1"/>
+                        <field name="standard_price" string="Old cost price" readonly="1"/>
+                        <field name="price_unit" string="New cost price" readonly="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="update_product_costprice"
+                            string="Confirm"
+                            type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    </data>
+</openerp>
