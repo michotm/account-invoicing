@@ -38,7 +38,6 @@ class AccountInvoice(models.Model):
     @api.multi
     def invoice_open(self):
         self.ensure_one()
-        lines_for_update = []
         lines_for_update = self._check_product_supplierprice()
         if lines_for_update:
             ctx = dict(
