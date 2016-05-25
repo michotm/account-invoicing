@@ -2,12 +2,12 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===============================================
-Update Product Cost Price from Supplier Invoice
-===============================================
+======================================================
+Update Supplier Price of product from Supplier Invoice
+======================================================
 
 This module allow from the supplier invoice, to automatic update all products
-whose unit price on the line is different from the cost price
+whose unit price on the line is different from the supplier price
  
 Usage
 =====
@@ -25,7 +25,7 @@ check there if your issue has already been reported. If you spotted it first,
 help us smashing it by providing a detailed and welcomed `feedback
 <https://github.com/OCA/
 account-invoicing/issues/new?body=module:%20
-account_invoice_product_cost_price_update%0Aversion:%20
+account_invoice_product_supplier_price_update%0Aversion:%20
 8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
  
 Credits

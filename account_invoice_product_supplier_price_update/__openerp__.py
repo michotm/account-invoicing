@@ -3,9 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Account Invoice Product Cost Price Update',
+    'name': 'Account Invoice Product Supplier Price Update',
     'summary': 'From the supplier invoice, to automatic update all products '
-               'whose unit price on the line is different from the cost price',
+               'whose unit price on the line is different from '
+               'the supplier price',
     'version': '8.0.1.0.0',
     'category': 'Accounting & Finance',
     'website': 'http://akretion.com',
@@ -15,9 +16,12 @@
     'installable': True,
     'depends': [
         'account',
+        'purchase',
+        'product_variant_supplierinfo',
+        'product_supplierinfo_tree_price_info',
     ],
     'data': [
         'account_invoice_view.xml',
-        'wizard/supplier_invoice_update_product_cost_price.xml'
+        'wizard/supplier_invoice_update_product_supplier_price.xml'
     ]
 }
