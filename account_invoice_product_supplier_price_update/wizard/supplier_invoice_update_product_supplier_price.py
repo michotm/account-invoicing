@@ -42,7 +42,7 @@ class SupplierinvoiceUpdateProductSupplierpriceLine(models.TransientModel):
 
     wizard_id = fields.Many2one(
         'supplierinvoice.update.product.supplierprice',
-        string='Invoice Reference')
+        string='Wizard Reference')
     name = fields.Text(string='Description', required=True)
     new_price_unit = fields.Float(string='New Unit Price',
                                   digits=dp.get_precision('Product Price'))
