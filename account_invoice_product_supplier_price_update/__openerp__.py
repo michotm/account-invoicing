@@ -4,7 +4,7 @@
 
 {
     'name': 'Account Invoice Product Supplier Price Update',
-    'summary': 'From the supplier invoice, to automatic update all products '
+    'summary': 'In the supplier invoice, automatically update all products '
                'whose unit price on the line is different from '
                'the supplier price',
     'version': '8.0.1.0.0',
@@ -12,7 +12,6 @@
     'website': 'http://akretion.com',
     'author': 'Akretion, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'application': False,
     'installable': True,
     'depends': [
         'account',

@@ -6,9 +6,10 @@
 Update Supplier Price of product from Supplier Invoice
 ======================================================
 
-This module allow from the supplier invoice, to automatic update all products
-whose unit price on the line is different from the supplier price
- 
+This module allow in the supplier invoice, automatically update all products
+whose unit price on the line is different from the supplier price.
+It created a new supplier price if there is not or it updates the first.
+
 Usage
 =====
 
@@ -19,14 +20,9 @@ Usage
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/account-invoicing/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
-<https://github.com/OCA/
-account-invoicing/issues/new?body=module:%20
-account_invoice_product_supplier_price_update%0Aversion:%20
-8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+Bugs are tracked on GitHub Issues. In case of trouble, please check there
+if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
  
 Credits
 =======
@@ -34,7 +30,7 @@ Credits
 Contributors
 ------------
  
-* Chafique Delli chafique.delli@akretion.com
+* Chafique Delli <chafique.delli@akretion.com>
  
 Maintainer
 ----------
