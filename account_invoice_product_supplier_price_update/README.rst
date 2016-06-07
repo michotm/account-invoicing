@@ -8,7 +8,7 @@ Update Supplier Price of product from Supplier Invoice
 
 This module allow in the supplier invoice, automatically update all products
 whose unit price on the line is different from the supplier price.
-It created a new supplier price if there is not or it updates the first.
+It creates a new supplier price if there is not or it updates the first.
 
 Usage
 =====
