@@ -15,8 +15,6 @@
     'installable': True,
     'depends': [
         'account',
-        'purchase',
-        'product_variant_supplierinfo',
         'product_supplierinfo_tree_price_info',
     ],
     'data': [
