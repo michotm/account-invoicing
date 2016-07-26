@@ -16,6 +16,7 @@
     'depends': [
         'account',
         'product_supplierinfo_tree_price_info',
+        'product_variant_supplierinfo'
     ],
     'data': [
         'account_invoice_view.xml',

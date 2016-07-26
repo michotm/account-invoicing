@@ -13,14 +13,17 @@ class AccountInvoice(models.Model):
         lines = []
         for line in self.invoice_line:
             current_price_unit = [(6, 0, [])]
-            suppinfo = self.env['product.supplierinfo'].search([
-                ('product_tmpl_id', '=', line.product_id.product_tmpl_id.id),
-                ('name', '=', self.partner_id.id),
-            ])
+            suppinfo = False
+            for seller in line.product_id.seller_ids:
+                if (self.partner_id == seller.name or
+                        self.partner_id.commercial_partner_id == seller.name):
+                    suppinfo = seller
+                    break
             if not suppinfo:
                 suppinfo = self.env['product.supplierinfo'].create({
-                    'name': self.partner_id.id,
-                    'product_tmpl_id': line.product_id.product_tmpl_id.id,
+                    'name': (self.partner_id.commercial_partner_id or
+                             self.partner_id).id,
+                    'product_id': line.product_id.id,
                     'min_qty': 0.0,
                     'delay': 1,
                 })
