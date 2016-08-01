@@ -20,13 +20,22 @@ class AccountInvoice(models.Model):
                     suppinfo = seller
                     break
             if not suppinfo:
-                suppinfo = self.env['product.supplierinfo'].create({
-                    'name': (self.partner_id.commercial_partner_id or
-                             self.partner_id).id,
-                    'product_id': line.product_id.id,
-                    'min_qty': 0.0,
-                    'delay': 1,
-                })
+                if line.product_id.variant_seller_ids:
+                    suppinfo = self.env['product.supplierinfo'].create({
+                        'name': (self.partner_id.commercial_partner_id or
+                                 self.partner_id).id,
+                        'product_id': line.product_id.id,
+                        'min_qty': 0.0,
+                        'delay': 1,
+                    })
+                else:
+                    suppinfo = self.env['product.supplierinfo'].create({
+                        'name': (self.partner_id.commercial_partner_id or
+                                 self.partner_id).id,
+                        'product_tmpl_id': line.product_id.product_tmpl_id.id,
+                        'min_qty': 0.0,
+                        'delay': 1,
+                    })
             for pricelist in suppinfo.pricelist_ids:
                 current_price_unit[0][2].append(pricelist.price)
             if line.price_unit not in current_price_unit[0][2]:

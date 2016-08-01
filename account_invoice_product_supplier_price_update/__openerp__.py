@@ -21,5 +21,9 @@
     'data': [
         'account_invoice_view.xml',
         'wizard/supplier_invoice_update_product_supplier_price.xml'
-    ]
+    ],
+    'demo': [
+        'demo/product_demo.xml',
+        'demo/account_invoice_demo.xml',
+    ],
 }
