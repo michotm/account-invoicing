@@ -14,36 +14,30 @@ class AccountInvoice(models.Model):
         for line in self.invoice_line:
             current_price_unit = [(6, 0, [])]
             suppinfo = False
+            suppinfo_id = False
+            suppinfo_pricelist_ids = []
+            suppinfo_unit_price_note = None
             for seller in line.product_id.seller_ids:
                 if (self.partner_id == seller.name or
                         self.partner_id.commercial_partner_id == seller.name):
                     suppinfo = seller
+                    suppinfo_pricelist_ids = suppinfo.pricelist_ids
+                    suppinfo_unit_price_note = suppinfo.unit_price_note
+                    suppinfo_id = suppinfo.id
                     break
-            if not suppinfo:
-                if line.product_id.variant_seller_ids:
-                    suppinfo = self.env['product.supplierinfo'].create({
-                        'name': (self.partner_id.commercial_partner_id or
-                                 self.partner_id).id,
-                        'product_id': line.product_id.id,
-                        'min_qty': 0.0,
-                        'delay': 1,
-                    })
-                else:
-                    suppinfo = self.env['product.supplierinfo'].create({
-                        'name': (self.partner_id.commercial_partner_id or
-                                 self.partner_id).id,
-                        'product_tmpl_id': line.product_id.product_tmpl_id.id,
-                        'min_qty': 0.0,
-                        'delay': 1,
-                    })
-            for pricelist in suppinfo.pricelist_ids:
+            for pricelist in suppinfo_pricelist_ids:
                 current_price_unit[0][2].append(pricelist.price)
             if line.price_unit not in current_price_unit[0][2]:
                 lines.append((0, 0, {
                     'name': line.name,
-                    'current_price_unit': suppinfo.unit_price_note,
+                    'current_price_unit': suppinfo_unit_price_note,
                     'new_price_unit': line.price_unit,
-                    'suppinfo_id': suppinfo.id,
+                    'suppinfo_id': suppinfo_id,
+                    'to_variant': True,
+                    'supplier_id': (self.partner_id.commercial_partner_id or
+                    self.partner_id).id,
+                    'product_id': line.product_id.id,
+                    'product_tmpl_id': line.product_id.product_tmpl_id.id,
                 }))
         return lines
 

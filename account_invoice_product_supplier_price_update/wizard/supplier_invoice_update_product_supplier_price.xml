@@ -9,9 +9,13 @@
                 <separator string="List of products to update"/>
                 <field name="wizard_line_ids">
                     <tree create="false" editable="0">
+                        <field name="suppinfo_id" invisible="1"/>
                         <field name="name" readonly="1"/>
-                        <field name="current_price_unit" readonly="1"/>
+                        <field name="current_price_unit"
+                               attrs="{'readonly': True, 'invisible': [('suppinfo_id', '=', False)]}"/>
                         <field name="new_price_unit"/>
+                        <field name="to_variant"
+                               attrs="{'invisible': [('suppinfo_id', '!=', False)]}"/>
                     </tree>
                 </field>
                 <footer>
