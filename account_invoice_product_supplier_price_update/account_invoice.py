@@ -28,14 +28,15 @@ class AccountInvoice(models.Model):
             for pricelist in suppinfo_pricelist_ids:
                 current_price_unit[0][2].append(pricelist.price)
             if line.price_unit not in current_price_unit[0][2]:
+                supplier_id = (self.partner_id.commercial_partner_id or
+                               self.partner_id)
                 lines.append((0, 0, {
                     'name': line.name,
                     'current_price_unit': suppinfo_unit_price_note,
                     'new_price_unit': line.price_unit,
                     'suppinfo_id': suppinfo_id,
                     'to_variant': True,
-                    'supplier_id': (self.partner_id.commercial_partner_id or
-                    self.partner_id).id,
+                    'supplier_id': supplier_id.id,
                     'product_id': line.product_id.id,
                     'product_tmpl_id': line.product_id.product_tmpl_id.id,
                 }))
