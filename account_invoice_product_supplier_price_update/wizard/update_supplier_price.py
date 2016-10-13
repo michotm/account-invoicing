@@ -6,11 +6,11 @@ from openerp import models, api, fields
 import openerp.addons.decimal_precision as dp
 
 
-class SupplierinvoiceUpdateProductSupplierprice(models.TransientModel):
-    _name = 'supplierinvoice.update.product.supplierprice'
+class UpdateSupplierprice(models.TransientModel):
+    _name = 'update.supplierprice'
 
     wizard_line_ids = fields.One2many(
-        'supplierinvoice.update.product.supplierprice.line',
+        'update.supplierprice.line',
         'wizard_id',
         string='Wizard lines')
 
@@ -53,12 +53,11 @@ class SupplierinvoiceUpdateProductSupplierprice(models.TransientModel):
                 self.env['pricelist.partnerinfo'].create(vals)
 
 
-class SupplierinvoiceUpdateProductSupplierpriceLine(models.TransientModel):
-    _name = 'supplierinvoice.update.product.supplierprice.line'
+class UpdateSupplierpriceLine(models.TransientModel):
+    _name = 'update.supplierprice.line'
 
-    wizard_id = fields.Many2one(
-        'supplierinvoice.update.product.supplierprice',
-        string='Wizard Reference')
+    wizard_id = fields.Many2one('update.supplierprice',
+                                string='Wizard Reference')
     name = fields.Text(string='Description', required=True)
     new_price_unit = fields.Float(string='New Unit Price',
                                   digits=dp.get_precision('Product Price'))

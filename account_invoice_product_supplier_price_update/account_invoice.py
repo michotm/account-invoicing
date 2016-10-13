@@ -12,29 +12,23 @@ class AccountInvoice(models.Model):
     def _check_product_supplierprice(self):
         lines = []
         for line in self.invoice_line:
-            current_price_unit = [(6, 0, [])]
-            suppinfo = False
-            suppinfo_id = False
-            suppinfo_pricelist_ids = []
-            suppinfo_unit_price_note = None
+            current_price_unit = []
+            suppinfo = self.env['product.supplierinfo'].browse(False)
+            supplier = self.partner_id.commercial_partner_id or self.partner_id
             for seller in line.product_id.seller_ids:
-                if (self.partner_id == seller.name or
-                        self.partner_id.commercial_partner_id == seller.name):
+                if supplier == seller.name:
                     suppinfo = seller
-                    suppinfo_pricelist_ids = suppinfo.pricelist_ids
-                    suppinfo_unit_price_note = suppinfo.unit_price_note
-                    suppinfo_id = suppinfo.id
+                    current_price_unit = [pricelist.price for pricelist in
+                                          suppinfo.pricelist_ids]
                     break
-            for pricelist in suppinfo_pricelist_ids:
-                current_price_unit[0][2].append(pricelist.price)
-            if line.price_unit not in current_price_unit[0][2]:
+            if line.price_unit not in current_price_unit:
                 supplier_id = (self.partner_id.commercial_partner_id or
                                self.partner_id)
                 lines.append((0, 0, {
                     'name': line.name,
-                    'current_price_unit': suppinfo_unit_price_note,
+                    'current_price_unit': suppinfo.unit_price_note,
                     'new_price_unit': line.price_unit,
-                    'suppinfo_id': suppinfo_id,
+                    'suppinfo_id': suppinfo.id,
                     'to_variant': True,
                     'supplier_id': supplier_id.id,
                     'product_id': line.product_id.id,
@@ -52,14 +46,14 @@ class AccountInvoice(models.Model):
             )
             update_product_supplierprice_form = self.env.ref(
                 'account_invoice_product_supplier_price_update.'
-                'view_supplierinvoice_update_product_supplierprice_form')
+                'view_update_supplierprice_form')
             return {
                 'name': _("Update product supplier price with unit price "
                           "of this supplier invoice."),
                 'type': 'ir.actions.act_window',
                 'view_type': 'form',
                 'view_mode': 'form',
-                'res_model': 'supplierinvoice.update.product.supplierprice',
+                'res_model': 'update.supplierprice',
                 'views': [(update_product_supplierprice_form.id, 'form')],
                 'view_id': update_product_supplierprice_form.id,
                 'target': 'new',

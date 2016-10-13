@@ -2,4 +2,4 @@
 # © 2016 Chafique DELLI @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from . import supplier_invoice_update_product_supplier_price
+from . import update_supplier_price
