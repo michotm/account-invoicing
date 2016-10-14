@@ -6,7 +6,7 @@ from openerp.tests.common import TransactionCase
 
 
 class TestUpdateSupplierPrice(TransactionCase):
-    def test_update_supplierprice_from_invoice(self):
+    def test_with_update_pricelist_supplierinfo_on_product_template(self):
         # supplier invoice with pricelist supplierinfo to update and
         # product supplierinfo is on product_template
         invoice_6 = self.env.ref(
@@ -41,6 +41,7 @@ class TestUpdateSupplierPrice(TransactionCase):
             ])
             self.assertNotEquals(pricelist_partnerinfos, False)
 
+    def test_with_update_pricelist_supplierinfo_on_product_product(self):
         # supplier invoice with pricelist supplierinfo to update and
         # product supplierinfo is on product_product
         invoice_7 = self.env.ref(
@@ -72,6 +73,7 @@ class TestUpdateSupplierPrice(TransactionCase):
             ])
             self.assertNotEquals(pricelist_partnerinfos, False)
 
+    def test_without_update_pricelist_supplierinfo(self):
         # supplier invoice without pricelist supplierinfo to update
         invoice_8 = self.env.ref(
             'account_invoice_product_supplier_price_update.account_invoice_8')
