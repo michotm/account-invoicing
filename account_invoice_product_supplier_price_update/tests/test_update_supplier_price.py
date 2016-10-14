@@ -5,21 +5,20 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestSupplierInvoiceUpdateProductSupplierPrice(TransactionCase):
-    def test_update_product_supplierprice_from_supplier_invoice(self):
+class TestUpdateSupplierPrice(TransactionCase):
+    def test_update_supplierprice_from_invoice(self):
         # supplier invoice with pricelist supplierinfo to update and
         # product supplierinfo is on product_template
         invoice_6 = self.env.ref(
             'account_invoice_product_supplier_price_update.account_invoice_6')
         result6 = invoice_6.invoice_open()
         # open new form when pricelist supplierinfo to update
-        self.assertEquals(result6['view_type'], 'form')
-        self.assertEquals(result6['res_model'],
-                          'supplierinvoice.update.product.supplierprice')
+        self.assertEquals(result6['view_mode'], 'form')
+        self.assertEquals(result6['res_model'], 'update.supplierprice')
         self.assertEquals(len(result6['context']['default_wizard_line_ids']),
                           1)
         self.assertEquals(result6['context']['default_wizard_line_ids'][0][2]
-                          ['current_price_unit'], None)
+                          ['current_price_unit'], False)
         self.assertEquals(result6['context']['default_wizard_line_ids']
                           [0][2]['new_price_unit'], 400.0)
         self.assertEquals(result6['type'], 'ir.actions.act_window')
@@ -29,7 +28,7 @@ class TestSupplierInvoiceUpdateProductSupplierPrice(TransactionCase):
         vals = {
             'wizard_line_ids': result6['context']['default_wizard_line_ids'],
         }
-        wizard = (self.env['supplierinvoice.update.product.supplierprice'].
+        wizard = (self.env['update.supplierprice'].
                   create(vals))
         # add pricelist partnerinfo
         (wizard.with_context(active_id=invoice_6.id).
@@ -48,9 +47,8 @@ class TestSupplierInvoiceUpdateProductSupplierPrice(TransactionCase):
             'account_invoice_product_supplier_price_update.account_invoice_7')
         result7 = invoice_7.invoice_open()
         # open new form when pricelist supplierinfo to update
-        self.assertEquals(result7['view_type'], 'form')
-        self.assertEquals(result7['res_model'],
-                          'supplierinvoice.update.product.supplierprice')
+        self.assertEquals(result7['view_mode'], 'form')
+        self.assertEquals(result7['res_model'], 'update.supplierprice')
         self.assertEquals(len(result7['context']['default_wizard_line_ids']),
                           1)
         self.assertEquals(result7['context']['default_wizard_line_ids'][0][2]
@@ -62,8 +60,7 @@ class TestSupplierInvoiceUpdateProductSupplierPrice(TransactionCase):
         vals = {
             'wizard_line_ids': result7['context']['default_wizard_line_ids'],
         }
-        wizard = (self.env['supplierinvoice.update.product.supplierprice'].
-                  create(vals))
+        wizard = self.env['update.supplierprice'].create(vals)
         # add pricelist partnerinfo
         (wizard.with_context(active_id=invoice_7.id).
          update_product_supplierprice())

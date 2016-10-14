@@ -5,10 +5,10 @@
 ======================================================
 Update Supplier Price of product from Supplier Invoice
 ======================================================
-
 This module allows in the supplier invoice, to automatically update all
 products whose unit price on the line is different from the supplier price.
 It creates a new supplier price if there is not or it updates the first.
+
 
 Usage
 =====
@@ -31,6 +31,7 @@ Contributors
 ------------
  
 * Chafique Delli <chafique.delli@akretion.com>
+
  
 Maintainer
 ----------

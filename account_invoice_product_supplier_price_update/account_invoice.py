@@ -51,7 +51,6 @@ class AccountInvoice(models.Model):
                 'name': _("Update product supplier price with unit price "
                           "of this supplier invoice."),
                 'type': 'ir.actions.act_window',
-                'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'update.supplierprice',
                 'views': [(update_product_supplierprice_form.id, 'form')],
