@@ -53,7 +53,7 @@ class TestUpdateSupplierPrice(TransactionCase):
         self.assertEquals(len(result7['context']['default_wizard_line_ids']),
                           1)
         self.assertEquals(result7['context']['default_wizard_line_ids'][0][2]
-                          ['current_price_unit'], '>=0.0 : 850.0')
+                          ['current_price_unit'], False)
         self.assertEquals(result7['context']['default_wizard_line_ids']
                           [0][2]['new_price_unit'], 1000.0)
         self.assertEquals(result7['type'], 'ir.actions.act_window')
