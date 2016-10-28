@@ -20,7 +20,12 @@
                 </field>
                 <footer>
                     <button name="update_product_supplierprice"
-                            string="Confirm"
+                            string="Update and Validate"
+                            type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button name="invoice_validate"
+                            string="Validate without updating"
                             type="object"
                             class="oe_highlight"/>
                     or

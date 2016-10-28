@@ -52,6 +52,12 @@ class UpdateSupplierprice(models.TransientModel):
                 }
                 self.env['pricelist.partnerinfo'].create(vals)
 
+    @api.multi
+    def invoice_validate(self):
+        invoice = self.env['account.invoice'].browse(
+            self._context['active_id'])
+        invoice.signal_workflow('invoice_open')
+
 
 class UpdateSupplierpriceLine(models.TransientModel):
     _name = 'update.supplierprice.line'
