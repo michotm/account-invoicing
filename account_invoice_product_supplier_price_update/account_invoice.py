@@ -41,9 +41,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         lines_for_update = self._check_product_supplierprice()
         if lines_for_update:
-            ctx = dict(
-                default_wizard_line_ids=lines_for_update,
-            )
+            ctx = {'default_wizard_line_ids': lines_for_update}
             update_product_supplierprice_form = self.env.ref(
                 'account_invoice_product_supplier_price_update.'
                 'view_update_supplierprice_form')
