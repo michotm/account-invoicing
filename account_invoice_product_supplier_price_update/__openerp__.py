@@ -23,7 +23,7 @@
         'wizard/update_supplier_price.xml'
     ],
     'demo': [
-        'demo/product_demo.xml',
-        'demo/account_invoice_demo.xml',
+        'demo/product_supplierinfo.xml',
+        'demo/account_invoice.xml',
     ],
 }

@@ -15,12 +15,12 @@ class AccountInvoice(models.Model):
             current_price_unit = []
             suppinfo = self.env['product.supplierinfo'].browse(False)
             supplier = self.partner_id.commercial_partner_id or self.partner_id
-            for seller in line.product_id.seller_ids:
-                if supplier == seller.name:
-                    suppinfo = seller
-                    current_price_unit = [pricelist.price for pricelist in
-                                          suppinfo.pricelist_ids]
-                    break
+            for seller in (line.product_id.seller_ids.
+                           filtered(lambda seller: seller.name == supplier)):
+                suppinfo = seller
+                current_price_unit = [pricelist.price for pricelist in
+                                      suppinfo.pricelist_ids]
+                break
             if line.price_unit not in current_price_unit:
                 supplier_id = (self.partner_id.commercial_partner_id or
                                self.partner_id)

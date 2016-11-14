@@ -16,6 +16,7 @@ class UpdateSupplierprice(models.TransientModel):
 
     @api.multi
     def update_product_supplierprice(self):
+        self.ensure_one()
         invoice = self.env['account.invoice'].browse(
             self._context['active_id'])
         invoice.signal_workflow('invoice_open')
