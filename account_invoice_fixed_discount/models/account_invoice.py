@@ -7,14 +7,14 @@ import openerp.addons.decimal_precision as dp
 from openerp.exceptions import ValidationError
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountInvoiceTax(models.Model):
+    _inherit = "account.invoice.tax"
 
-    @api.multi
-    def get_taxes_values(self):
-        self.ensure_one()
+    @api.model
+    def compute(self, invoice):
+        invoice.ensure_one()
         vals = {}
-        for line in self.invoice_line_ids.filtered('discount_fixed'):
+        for line in invoice.invoice_line.filtered('discount_fixed'):
             vals[line] = {
                 'price_unit': line.price_unit,
                 'discount_fixed': line.discount_fixed,
@@ -24,7 +24,7 @@ class AccountInvoice(models.Model):
                 'price_unit': price_unit,
                 'discount_fixed': 0.0,
             })
-        tax_grouped = super(AccountInvoice, self).get_taxes_values()
+        tax_grouped = super(AccountInvoiceTax, self).compute(invoice)
         for line in vals.keys():
             line.update(vals[line])
         return tax_grouped
@@ -57,7 +57,7 @@ class AccountInvoiceLine(models.Model):
                     _("You can only set one type of discount per line."))
 
     @api.one
-    @api.depends('price_unit', 'discount', 'invoice_line_tax_ids', 'quantity',
+    @api.depends('price_unit', 'discount', 'invoice_line_tax_id', 'quantity',
                  'product_id', 'invoice_id.partner_id',
                  'invoice_id.currency_id', 'invoice_id.company_id',
                  'discount_fixed')
@@ -74,3 +74,22 @@ class AccountInvoiceLine(models.Model):
             'price_unit': prev_price_unit,
             'discount_fixed': prev_discount_fixed,
         })
+
+    @api.model
+    def move_line_get(self, invoice_id):
+        inv = self.env['account.invoice'].browse(invoice_id)
+        vals = {}
+        for line in inv.invoice_line.filtered('discount_fixed'):
+            vals[line] = {
+                'price_unit': line.price_unit,
+                'discount_fixed': line.discount_fixed,
+            }
+            price_unit = line.price_unit - line.discount_fixed
+            line.update({
+                'price_unit': price_unit,
+                'discount_fixed': 0.0,
+            })
+        res = super(AccountInvoiceLine, self).move_line_get(invoice_id)
+        for line in vals.keys():
+            line.update(vals[line])
+        return res
