@@ -76,6 +76,15 @@ class AccountMoveLine(models.Model):
     _name = "account.move.line"
 
     def _create_discount_lines(self, move):
+        if (
+            len(
+                self.env["account.move"].search(
+                    [("invoice_origin", "=", move.invoice_origin)]
+                )
+            )
+            > 1
+        ):
+            return
         amount_untaxed = move.amount_untaxed
         # create discount lines by tax line
         with_tax_lines = move.line_ids.filtered(lambda x: x.tax_line_id)
@@ -111,11 +120,15 @@ class AccountMoveLine(models.Model):
         discount_product = self.env.ref(
             "account_global_discount_amount.discount_product"
         )
-        discount_line = self.search([("product_id", "=", discount_product.id),
-                                    ("move_id", "=", move.id),
-                                    ("tax_ids", "=", tax_ids[0][2][0])
-                                    ], limit=1)
-        if not len(discount_line):                            
+        discount_line = self.search(
+            [
+                ("product_id", "=", discount_product.id),
+                ("move_id", "=", move.id),
+                ("tax_ids", "=", tax_ids[0][2][0]),
+            ],
+            limit=1,
+        )
+        if not len(discount_line):
             discount_line = self.with_context(check_move_validity=False).create(
                 {
                     "product_id": discount_product.id,
