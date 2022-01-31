@@ -77,13 +77,15 @@ class AccountMoveLine(models.Model):
 
     def _create_discount_lines(self, move):
         if (
-            len(
+            move.invoice_origin
+            and len(
                 self.env["account.move"].search(
                     [("invoice_origin", "=", move.invoice_origin)]
                 )
             )
             > 1
         ):
+            # we assume this is a credit note no discount creation needed
             return
         amount_untaxed = move.amount_untaxed
         # create discount lines by tax line
